@@ -1,0 +1,11 @@
+*node_modules
+*package-lock.json
+*.env
+*sql_banco
+*sql_banco/db_voto_brasil.sql
+
+node_modules
+package-lock.json
+.env
+sql_banco
+sql_banco/db_voto_brasil.sql

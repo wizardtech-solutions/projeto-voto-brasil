@@ -1,0 +1,52 @@
+<section class="content_form">
+
+    <div class="box_voltar_title">
+        <a href="/">
+            <span class="material-symbols-outlined">
+                keyboard_return
+            </span>
+        </a>
+        <h2 class="title">Cadastro Votação</h2>
+        <span class="material-symbols-outlined">
+            info
+        </span>
+    </div>
+
+    <div class="content_bane">
+        <div class="box_msg">
+            <p>Atenção ao preencher os campos de cadastro</p>
+        </div>
+        <div class="box_img"><img src="/img/6202983_3173481-removebg-preview.png" alt=""></div>
+    </div>
+
+
+    <form action="/cadastro/cadastro_titulo" method="post" id="form" class="form">
+        <div class="box_item">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" placeholder="Nome completo">
+        </div>
+        <div class="box_item">
+            <label for="number_telefone">Número Telefone</label>
+            <input type="number" id="number_telefone" name="number_telefone" placeholder="insira o número do telefone">
+        </div>
+
+        <div class="box_item">
+            <label for="cep">Cep</label>
+            <input type="number" id="cep" name="cep" placeholder="insira o cep">
+        </div>
+
+        <div class="box_item">
+            <label for="cidade">Seção:</label>
+            <select name="cidade" id="cidade">
+                <option value="">Selecione a seção</option>
+                <option value="teresina">Teresina</option>
+            </select>
+        </div>
+
+        <div class="content_btn-form">
+            <button id="btn-submit-cadastro" type="submit">Cadastrar</button>
+        </div>
+    </form>
+
+
+</section>

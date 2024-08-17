@@ -1,0 +1,94 @@
+.content_tela_inicio_voto {
+    width: 100%;
+    height: 100vh;
+    /* padding: 0 25px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: aquamarine; */
+
+    .box_img {
+        width: 100%;
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        img {
+            width: 70%;
+        }
+    }
+    p{
+        color: #fe9b00;
+    }
+    h1{
+        color: #333333;
+        margin-top: 15px;
+    }
+   
+    .content_codigo{
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+
+        .box_codigo{
+            width: 30px;
+            height: 30px;
+            border: 1px solid #a7a7a7dd;
+            border-radius: 5px;
+            font-size: 18px;
+            text-align: center;
+            color: transparent; /* Torna o texto invisível para aplicar a animação */
+            background-color: #f9f9f9; /* Cor de fundo dos inputs */
+            transition: color 0.5s;
+        }
+
+    }
+.btn-avanca-inicio{
+  margin: 30px 0;
+}
+
+
+}
+/* Define a animação de opacidade para o texto dos inputs */
+@keyframes fadeInText {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Anima o texto dentro dos inputs */
+  .box_codigo::before {
+    content: attr(value); /* Adiciona o valor do input como conteúdo */
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 30px; /* Alinha o texto verticalmente */
+    color: #333333; /* Cor do texto */
+    opacity: 0; /* Começa invisível */
+    animation: fadeInText 0.5s forwards; /* Animação de fade in */
+  }
+  
+  /* Define o atraso para cada input */
+  .box_codigo:nth-child(1)::before {
+    animation-delay: 0.2s;
+  }
+  .box_codigo:nth-child(2)::before {
+    animation-delay: 0.4s;
+  }
+  .box_codigo:nth-child(3)::before {
+    animation-delay: 0.6s;
+  }
+  .box_codigo:nth-child(4)::before {
+    animation-delay: 0.8s;
+  }
+  .box_codigo:nth-child(5)::before {
+    animation-delay: 1s;
+  }
+  

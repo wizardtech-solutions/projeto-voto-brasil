@@ -1,0 +1,33 @@
+<section class="content_tela_inicio_voto">
+
+    <div class="box_img"><img src="/img/vetor-inicio-voto.png" alt=""></div>
+    <p>Verificação zona de votação</p>
+    <h1>Codigo cadastro</h1>
+    <form action="/votacao/vereador" method="post">
+
+        {{#if idInsert}}
+
+            <input type="hidden" value="{{idInsert}}" id="id" name="id">
+
+            <div class="content_codigo">
+                {{#each digitsArray}}
+                <input class="box_codigo" value="{{this}}" readonly>
+                {{/each}}
+            </div>
+
+        {{else}}
+
+            <div class="content_codigo">
+
+                <input class="box_codigo">
+                <input class="box_codigo">
+                <input class="box_codigo">
+                <input class="box_codigo">
+                <input class="box_codigo">
+
+            </div>
+
+        {{/if}}
+        <button class="btn-avanca-inicio">Avançar</button>
+    </form>
+</section>

@@ -1,0 +1,11 @@
+<section class="section_error">
+    <img src="/img/page-error.png" alt="">
+    {{#if errorText}}
+        <h1>{{errorText}}</h1>
+        <p>Volte ao inicio e tente novamente!</p>
+    {{else}}
+        <h1>Aconteu algum error, volte ao inicio e tente novamente!</h1>
+    {{/if}}
+    <a class="button_error" href="/">Inicio</a>
+    <a class="button_error btn_error" href="../">Voltar</a>
+</section>

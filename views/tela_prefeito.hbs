@@ -1,0 +1,55 @@
+<form action="/votacao/finalizar" method="post" id="form-prefeito" class="content_candidator">
+    <input type="hidden" id="votoPrefeito" name="votoPrefeito">
+    <input type="hidden" id="codeVoto" name="codeVoto" value={{codeVoto}}>
+    <input type="hidden" id="votoVereador" name="votoVereador" value={{votoVereador}}>
+
+    <h3 class="title_candidato">Votação Prefeito</h3>
+    <div class="content_img_candidato">
+        <div class="box_img">
+            <img id="img-cand" src="" alt="">
+            <div id="voto-nulo" class="voto-nulo"></div>
+
+            {{!-- <img src="/img/candidator-H.jpg" alt=""> --}}
+        </div>
+    </div>
+    <div class="content_nome_candiato"> 
+        {{!-- NM_URNA_CANDIDATO, DS_CARGO, NM_PARTIDO, SG_PARTIDO --}}
+        <p id="nome-cand" class="nome_candidato"></p>
+        <p id="cargo-cidade"></p>
+        <p id="partido-sigla"></p>
+    </div>
+    <div class="box_number_candidato" id="box_number_prefeito">
+        <input class="content_item tl-prefeito" maxlength="1" type="text"></input>
+        <input class="content_item tl-prefeito" maxlength="1" type="text"></input>
+    </div>
+
+    <div class="content_number_votacao" id="content_number_prefeito">
+        <div class="box_number">1</div>
+        <div class="box_number">2</div>
+        <div class="box_number">3</div>
+        <div class="box_number">4</div>
+        <div class="box_number">5</div>
+        <div class="box_number">6</div>
+        <div class="box_number">7</div>
+        <div class="box_number">8</div>
+        <div class="box_number">9</div>
+        <div class="box_number">0</div>
+    </div>
+
+    <div class="content_teclas">
+        <div class="tecla_branca" id="tecla_branca_prefeito">Branco</div>
+        <div class="tecla_laranja" id="tecla_laranja_prefeito">Corrigir</div>
+        <button type="submit" class="tecla_verde" id="tecla_verde_prefeito">Confirmar</button>
+
+    </div>
+
+    <!-- Elemento de áudio -->
+    <audio id="somTecla_prefeito">
+        <source src="/audio/somTecla.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+    <audio id="somVotou_prefeito">
+        <source src="/audio/somVotou.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+</form>
