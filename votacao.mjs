@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .then(response => response.json())
     .then(data => { 
-        dataCand= data.filter(candidate => candidate.NM_UE == municipio.value)
+        dataCand= data.filter(candidate => candidate.NM_UE == municipio.value && candidate.DS_CARGO == "VEREADOR")
     })
     // Função para preencher todos os inputs com zeros
     function preencherBranco() {
@@ -108,19 +108,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Função para verificar se todos os inputs estão preenchidos e criar um alerta
-    function verificarPreenchimentoCompleto() {
+    async function verificarPreenchimentoCompleto() {
         document.getElementById('voto-nulo').textContent = "";
         document.getElementById('img-cand').src = "";
         document.getElementById('nome-cand').textContent = "";
         document.getElementById('cargo-cidade').textContent = "";
         document.getElementById('partido-sigla').textContent = "";
       
-        const todosPreenchidos = Array.from(inputs).every(input => input.value !== '');
+        const todosPreenchidos = await Array.from(inputs).every(input => input.value !== '');
         if (todosPreenchidos) {
-            let votos = Array.from(inputs).map(input => input.value).join('');
+            let votos = await Array.from(inputs).map(input => input.value).join('');
 
             // Filtrar apenas os candidatos que são vereadores
-            const candidato = dataCand.find(cand => cand.DS_CARGO == "VEREADOR" && cand.NR_CANDIDATO == votos);
+            const candidato = await dataCand.find(cand => cand.DS_CARGO == "VEREADOR" && cand.NR_CANDIDATO == votos);
             if (candidato) {
                 // Preenche os dados do candidato
                 document.getElementById('nome-cand').textContent = candidato.NM_URNA_CANDIDATO;
@@ -167,5 +167,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btnBranco.addEventListener('click', preencherBranco);
     btnLaranja.addEventListener('click', corrigir);
-   
 });
