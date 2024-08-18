@@ -118,13 +118,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('cargo-cidade').textContent = "";
         document.getElementById('partido-sigla').textContent = "";
 
-        const todosPreenchidos = Array.from(inputsPrefeito).every(input => input.value !== '');
-        if (todosPreenchidos) {
+        const todosPreenchidosPrefeito = Array.from(inputsPrefeito).every(input => input.value !== '');
+        if (todosPreenchidosPrefeito) {
             let votos = Array.from(inputsPrefeito).map(input => input.value).join('');
 
             // Filtrar apenas os candidatos que são vereadores
             const candidato = dataCandPrefeito.find(cand => cand.DS_CARGO == "PREFEITO" && cand.NR_CANDIDATO == votos);
-            console.log("CANDIDATO E VOTOS",todosPreenchidos, candidato, votos)
+            console.log("CANDIDATO E VOTOS",todosPreenchidosPrefeito, candidato, votos)
             if (candidato) {
                 // Preenche os dados do candidato
                 document.getElementById('nome-cand').textContent = candidato.NM_URNA_CANDIDATO;
