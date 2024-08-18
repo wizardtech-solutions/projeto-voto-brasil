@@ -47,6 +47,8 @@
 }
 
 .content_finalizar {
+    width: 100%;
+    height: 100vh;
     /* height: ; */
     display: flex;
 
@@ -70,8 +72,9 @@
         width: 90%;
         height: 50px;
         border-radius: 10px;
-        position: relative;
-        top: 250px;
+        /* position: absolute; */
+        /* top: 250px; */
+        margin: 40px;
         background-color: white;
         color: #333333;
         display: flex;
@@ -80,6 +83,19 @@
     }
 
 
+}
+@media (width>700px) {
+    .section_finalizar{
+        height: 100vh;
+        width: 350px;
+    }
+    .content_finalizar {
+        height: 100vh;
+        width: 350px;
+    }
+    .button-finalizar {
+        width: 300px;
+    }
 }
 
 .content_load {

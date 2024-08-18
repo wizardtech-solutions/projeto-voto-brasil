@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let votos = Array.from(inputsPrefeito).map(input => input.value).join('');
 
             // Filtrar apenas os candidatos que são vereadores
-            const candidato = dataCand.find(cand => (cand.DS_CARGO == "PREFEITO" || cand.DS_CARGO == "VEREADOR") && cand.NR_CANDIDATO == votos);
+            const candidato = dataCand.find(cand => cand.DS_CARGO == "PREFEITO" && cand.NR_CANDIDATO == votos);
 
             if (candidato) {
                 // Preenche os dados do candidato
