@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const municipio = document.querySelector('#municipio'); 
+    
     const codeVoto = document.getElementById('codeVoto'); // Seleciona o áudio
     const votoVereador = document.getElementById('votoVereador'); // Seleciona o áudio
     const votoPrefeito = document.getElementById('votoPrefeito');
@@ -71,7 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .then(response => response.json())
     .then(data => { 
-        dataCand=data
+        dataCand= data.filter(candidate => candidate.NM_UE == municipio.value)
+        console.log("dataCnd",dataCand)
     })
     // Função para preencher todos os inputsPrefeito com zeros
     function preencherBranco() {
@@ -130,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('partido-sigla').textContent = `${candidato.NM_PARTIDO} - ${candidato.SG_PARTIDO}`;
 
                 // Atualiza o caminho da imagem (certifique-se que o caminho esteja correto)
-                document.getElementById('img-cand').src = `/img/${candidato.NM_URNA_CANDIDATO.toLowerCase().replace(/ /g, '-')}.jpg`;
+                document.getElementById('img-cand').src = `/img/FPI${candidato.SQ_CANDIDATO}_div.jpeg`;
 
                 // document.getElementById('img-cand').src = `/img/${candidato.NM_URNA_CANDIDATO}.jpg`;
             } else {

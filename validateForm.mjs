@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Valide a seção
             if (cidade === '') {
-                alert('Você deve selecionar uma seção.');
+                alert('Você deve selecionar a cidade.');
                 event.preventDefault(); // Impede o envio do formulário
                 return; // Saia da função após exibir o erro
             }

@@ -1,4 +1,6 @@
 <form action="/votacao/finalizar" method="post" id="form-prefeito" class="content_candidator">
+    <input type="hidden" id="municipio" name="municipio" value="{{municipio}}">
+    
     <input type="hidden" id="votoPrefeito" name="votoPrefeito">
     <input type="hidden" id="codeVoto" name="codeVoto" value={{codeVoto}}>
     <input type="hidden" id="votoVereador" name="votoVereador" value={{votoVereador}}>
@@ -12,7 +14,7 @@
             {{!-- <img src="/img/candidator-H.jpg" alt=""> --}}
         </div>
     </div>
-    <div class="content_nome_candiato"> 
+    <div class="content_nome_candiato">
         {{!-- NM_URNA_CANDIDATO, DS_CARGO, NM_PARTIDO, SG_PARTIDO --}}
         <p id="nome-cand" class="nome_candidato"></p>
         <p id="cargo-cidade"></p>

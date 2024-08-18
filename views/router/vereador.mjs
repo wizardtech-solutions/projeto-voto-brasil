@@ -1,12 +1,14 @@
 import express from "express";
 import pool from "../db/db.mjs";
-
+import dotenv from 'dotenv'
+dotenv.config();
 const router = express.Router();
 
 router.get('/tela_fim', (req, res) => {
     return res.render('tela_finalizar');
 });
 router.post('/vereador', async (req, res) => {
+    const municipio = process.env.MUNICIPIO
 
     const id = req.body.id
 
@@ -30,7 +32,7 @@ router.post('/vereador', async (req, res) => {
 
         });
 
-        res.render('tela_vereador', { codeVoto: id });
+        res.render('tela_vereador', { codeVoto: id, municipio });
 
     } catch (error) {
         console.log(error);
@@ -39,9 +41,11 @@ router.post('/vereador', async (req, res) => {
 });
 
 router.post('/prefeito', async (req, res) => {
+    const municipio = process.env.MUNICIPIO
+    
     const { codeVoto, votoVereador } = req.body
     console.log(codeVoto, votoVereador)
-    return res.render('tela_prefeito', { codeVoto, votoVereador })
+    return res.render('tela_prefeito', { codeVoto, votoVereador, municipio })
 });
 
 router.post('/finalizar', async (req, res) => {

@@ -1,13 +1,14 @@
 import express from 'express';
 import QRCode from 'qrcode';
-import dotenv from 'dotenv'
 import pool from '../db/db.mjs';
+import dotenv from 'dotenv'
 dotenv.config();
 
 const router = express.Router();
 
 router.get('/cadastro-titulo', (req, res) => {
-  res.render('tela_cadastro');
+  const municipio = process.env.MUNICIPIO
+  return res.render('tela_cadastro', { municipio});
 });
 
 router.get('/confirm-cadastro', (req, res) => {

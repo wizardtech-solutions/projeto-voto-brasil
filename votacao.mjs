@@ -1,13 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const municipio = document.querySelector('#municipio'); 
     
-    const codeVoto = document.getElementById('codeVoto'); // Seleciona o áudio
-    const votoVereador = document.getElementById('votoVereador'); // Seleciona o áudio
+    const codeVoto = document.getElementById('codeVoto'); 
+    const votoVereador = document.getElementById('votoVereador'); 
 
     const btnBranco = document.querySelector('#tecla_branca_vereador')
     const btnLaranja = document.querySelector('#tecla_laranja_vereador')
     const somTecla = document.querySelector('#somTecla_vereador'); // Seleciona o áudio
     const somVotou = document.querySelector('#somVotou_vereador'); // Seleciona o áudio
-    const formVereador = document.querySelector('#form-vereador'); // Seleciona o áudio
+    const formVereador = document.querySelector('#form-vereador');
 
     const inputs = document.querySelectorAll('#box_number_vereador .content_item');
     const numbers = document.querySelectorAll('#content_number_vereador .box_number');
@@ -69,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .then(response => response.json())
     .then(data => { 
-        dataCand=data
+        dataCand= data.filter(candidate => candidate.NM_UE == municipio.value)
     })
     // Função para preencher todos os inputs com zeros
     function preencherBranco() {
@@ -120,7 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Filtrar apenas os candidatos que são vereadores
             const candidato = dataCand.find(cand => (cand.DS_CARGO == "PREFEITO" || cand.DS_CARGO == "VEREADOR") && cand.NR_CANDIDATO == votos);
-            // console.log("renato",candidato, votos)
             if (candidato) {
                 // Preenche os dados do candidato
                 document.getElementById('nome-cand').textContent = candidato.NM_URNA_CANDIDATO;
@@ -128,7 +128,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('partido-sigla').textContent = `${candidato.NM_PARTIDO} - ${candidato.SG_PARTIDO}`;
 
                 // Atualiza o caminho da imagem (certifique-se que o caminho esteja correto)
-                document.getElementById('img-cand').src = `/img/${candidato.NM_URNA_CANDIDATO.toLowerCase().replace(/ /g, '-')}.jpg`;
+                // document.getElementById('img-cand').src = `/img/${candidato.NM_URNA_CANDIDATO.toLowerCase().replace(/ /g, '-')}.jpg`;
+                console.log("candidato.SQ_CANTIDATO",candidato.SQ_CANDIDATO)
+                document.getElementById('img-cand').src = `/img/FPI${candidato.SQ_CANDIDATO}_div.jpeg`;
 
                 // document.getElementById('img-cand').src = `/img/${candidato.NM_URNA_CANDIDATO}.jpg`;
             } else {
