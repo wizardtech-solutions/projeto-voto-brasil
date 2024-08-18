@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
    
 
     // Função para verificar se todos os inputsPrefeito estão preenchidos e criar um alerta
-    function verificarPreenchimentoCompleto() {
+    function verificarPreenchimentoCompletoPrefeito() {
         document.getElementById('voto-nulo').textContent = "";
         document.getElementById('img-cand').src = "";
         document.getElementById('nome-cand').textContent = "";
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 somTeclaPrefeito.play(); // Toca o som da tecla
 
                 // Verifica se todos os inputsPrefeito estão preenchidos
-                verificarPreenchimentoCompleto();
+                verificarPreenchimentoCompletoPrefeito();
             }
         });
     });
