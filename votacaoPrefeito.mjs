@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //     DS_COR_RACA: "PARDA",
     //     DS_OCUPACAO: "ADVOGADO"
     // }]
-    let dataCand = [];
+    let dataCandPrefeito = [];
     fetch('/data/', {
         method: 'GET',
         headers: {
@@ -73,8 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .then(response => response.json())
     .then(data => { 
-        dataCand= data.filter(candidate => candidate.NM_UE == municipio.value)
-        console.log("dataCnd",dataCand)
+        dataCandPrefeito= data.filter(candidate => candidate.NM_UE == municipio.value)
     })
     // Função para preencher todos os inputsPrefeito com zeros
     function preencherBranco() {
@@ -124,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let votos = Array.from(inputsPrefeito).map(input => input.value).join('');
 
             // Filtrar apenas os candidatos que são vereadores
-            const candidato = dataCand.find(cand => cand.DS_CARGO == "PREFEITO" && cand.NR_CANDIDATO == votos);
+            const candidato = dataCandPrefeito.find(cand => cand.DS_CARGO == "PREFEITO" && cand.NR_CANDIDATO == votos);
 
             if (candidato) {
                 // Preenche os dados do candidato

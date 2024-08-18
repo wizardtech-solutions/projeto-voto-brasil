@@ -9,11 +9,8 @@ router.get('/tela_fim', (req, res) => {
 });
 router.post('/vereador', async (req, res) => {
     const municipio = process.env.MUNICIPIO
-
     const id = req.body.id
-
     try {
-
         const SQLInsert = 'SELECT * FROM tb_cad_title WHERE id =?'
 
         await pool.query(SQLInsert, [id], (err, result) => {
@@ -44,7 +41,6 @@ router.post('/prefeito', async (req, res) => {
     const municipio = process.env.MUNICIPIO
     
     const { codeVoto, votoVereador } = req.body
-    console.log(codeVoto, votoVereador)
     return res.render('tela_prefeito', { codeVoto, votoVereador, municipio })
 });
 
