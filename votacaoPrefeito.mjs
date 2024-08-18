@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Filtrar apenas os candidatos que são vereadores
             const candidato = dataCandPrefeito.find(cand => cand.DS_CARGO == "PREFEITO" && cand.NR_CANDIDATO == votos);
-
+            console.log("CANDIDATO E VOTOS",todosPreenchidos, candidato, votos)
             if (candidato) {
                 // Preenche os dados do candidato
                 document.getElementById('nome-cand').textContent = candidato.NM_URNA_CANDIDATO;
