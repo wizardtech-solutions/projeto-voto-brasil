@@ -1,11 +1,11 @@
 // validateForm.mjs
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('form');
     const buttonCad = document.querySelector('#btn-submit-cadastro');
     const loadingCad = document.querySelector('.loading-cad');
     const telefoneInput = document.getElementById('number_telefone');
 
-    telefoneInput.addEventListener('input', function(event) {
+    telefoneInput.addEventListener('input', function (event) {
         let value = event.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
 
         // Adiciona a máscara ao valor
@@ -23,8 +23,9 @@ document.addEventListener('DOMContentLoaded', function() {
         event.target.value = value;
     });
     if (form) {
-        form.addEventListener('submit', function(event) {
+        form.addEventListener('submit', function (event) {
             buttonCad.disabled = true;
+            buttonCad.style.display = 'none'
             loadingCad.style.display = 'flex';
             // Obtenha os valores dos campos
             try {
@@ -32,14 +33,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 const numberTelefone = document.getElementById('number_telefone').value.replace(/\D/g, '');
                 const cep = document.getElementById('cep').value.trim();
                 const cidade = document.getElementById('cidade').value;
-    
+
                 // Valide o nome
                 if (nome === '') {
                     alert('O nome é obrigatório.');
                     event.preventDefault(); // Impede o envio do formulário
                     return; // Saia da função após exibir o erro
                 }
-    
+
                 // Valide o número de telefone (deve ter pelo menos 10 dígitos)
                 const numberTelefoneRegex = /^\d{10,11}$/;
                 if (!numberTelefoneRegex.test(numberTelefone)) {
@@ -48,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     event.preventDefault(); // Impede o envio do formulário
                     return; // Saia da função após exibir o erro
                 }
-    
+
                 // Valide o CEP (deve ter exatamente 8 dígitos)
                 const cepRegex = /^\d{8}$/;
                 if (!cepRegex.test(cep)) {
@@ -56,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     event.preventDefault(); // Impede o envio do formulário
                     return; // Saia da função após exibir o erro
                 }
-    
+
                 // Valide a seção
                 if (cidade === '') {
                     event.preventDefault(); // Impede o envio do formulário
@@ -65,11 +66,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             } catch (error) {
                 alert('Algo aconteceu, recarregue a pagina e tente novamente')
-            }finally{
+            } finally {
                 setTimeout(() => {
-                    buttonCad.disabled = false;
                     loadingCad.style.display = 'none';
-                }, 500);
+                }, 3000);
+                buttonCad.disabled = false;
+                buttonCad.style.display = 'block'
             }
         });
     }
