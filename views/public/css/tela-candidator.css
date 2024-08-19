@@ -55,6 +55,7 @@
     margin-top: 15px;
     gap: 10px;
     padding: 0 40px;
+    
     .content_item{
         width: 100%;
         height: 30px;
@@ -87,6 +88,10 @@
         background-color: #e3e5d7;
         border-radius: 5px;
         color: #333333;
+        user-select: none;
+        -webkit-user-select: none; /* Para navegadores WebKit (Safari e Chrome) */
+        -moz-user-select: none;    /* Para Firefox */
+        -ms-user-select: none;     /* Para navegadores da Microsoft */
     }
 } 
 
@@ -107,6 +112,10 @@
         /* font-size: 13px; */
         border-radius: 5px;
         box-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+        user-select: none;
+        -webkit-user-select: none; /* Para navegadores WebKit (Safari e Chrome) */
+        -moz-user-select: none;    /* Para Firefox */
+        -ms-user-select: none;     /* Para navegadores da Microsoft */
     }
 
     .tecla_branca{
