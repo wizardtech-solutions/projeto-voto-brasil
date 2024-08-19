@@ -24,9 +24,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     if (form) {
         form.addEventListener('submit', function (event) {
+            loadingCad.style.display = 'flex';
             buttonCad.disabled = true;
             buttonCad.style.display = 'none'
-            loadingCad.style.display = 'flex';
             // Obtenha os valores dos campos
             try {
                 const nome = document.getElementById('nome').value.trim();
@@ -70,8 +70,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 setTimeout(() => {
                     buttonCad.disabled = false;
                     buttonCad.style.display = 'block'
+                    loadingCad.style.display = 'none';
                 }, 3000);
-                loadingCad.style.display = 'none';
             }
         });
     }
