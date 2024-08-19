@@ -68,10 +68,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 alert('Algo aconteceu, recarregue a pagina e tente novamente')
             } finally {
                 setTimeout(() => {
-                    loadingCad.style.display = 'none';
+                    buttonCad.disabled = false;
+                    buttonCad.style.display = 'block'
                 }, 3000);
-                buttonCad.disabled = false;
-                buttonCad.style.display = 'block'
+                loadingCad.style.display = 'none';
             }
         });
     }
