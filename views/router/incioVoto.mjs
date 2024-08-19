@@ -16,8 +16,6 @@ router.get('/inicio-votacao/:id?', (req, res) => {
         
         
         res.render('tela_inicio_voto', { idInsert: isValidId ? idInsert : null, digitsArray });
-        
-
     } catch (error) {
         console.log(error)
     }

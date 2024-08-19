@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const buttonCad = document.querySelector('#btn-submit-cadastro');
     const loadingCad = document.querySelector('.loading-cad');
     const telefoneInput = document.getElementById('number_telefone');
+    const cepInput = document.getElementById('cep');
 
     telefoneInput.addEventListener('input', function (event) {
         let value = event.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
@@ -17,6 +18,21 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         if (value.length > 10) {
             value = value.slice(0, 10) + '-' + value.slice(10, 15);
+        }
+
+        // Define o valor formatado de volta no input
+        event.target.value = value;
+    });
+
+    // Máscara para o input de CEP
+    cepInput.addEventListener('input', function (event) {
+        let value = event.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+
+        if (value.length > 2) {
+            value = value.slice(0, 2) + '.' + value.slice(2);
+        }
+        if (value.length > 6) {
+            value = value.slice(0, 6) + '-' + value.slice(6, 9);
         }
 
         // Define o valor formatado de volta no input
@@ -51,8 +67,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 // Valide o CEP (deve ter exatamente 8 dígitos)
+                const cleanedCep = cep.replace(/\D/g, ''); // Remove todos os caracteres que não sejam números
+
                 const cepRegex = /^\d{8}$/;
-                if (!cepRegex.test(cep)) {
+                if (!cepRegex.test(cleanedCep)) {
                     alert('O CEP deve ter exatamente 8 dígitos.');
                     event.preventDefault(); // Impede o envio do formulário
                     return; // Saia da função após exibir o erro
@@ -64,6 +82,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     alert('Você deve selecionar a cidade.');
                     return; // Saia da função após exibir o erro
                 }
+
+                // grecaptcha.enterprise.ready(async () => {
+                //     const token = await grecaptcha.enterprise.execute('6LevqCkqAAAAAJ1jLq5-9NMg0nG6SJc5fmVhklXb', {action: 'LOGIN'});
+                // });
+            
+
             } catch (error) {
                 alert('Algo aconteceu, recarregue a pagina e tente novamente')
             } finally {

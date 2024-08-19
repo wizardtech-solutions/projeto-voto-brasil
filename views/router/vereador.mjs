@@ -8,33 +8,30 @@ router.get('/tela_fim', (req, res) => {
     return res.render('tela_finalizar');
 });
 router.post('/vereador', async (req, res) => {
-    const municipio = process.env.MUNICIPIO
-    const id = req.body.id
+    const municipio = process.env.MUNICIPIO;
+    const id = req.body.id;
+
     try {
-        const SQLInsert = 'SELECT * FROM tb_cad_title WHERE id =?'
-
-        await pool.query(SQLInsert, [id], (err, result) => {
-
+        const SQLSelect = 'SELECT * FROM tb_cad_title WHERE id = ?';
+        
+        await pool.query(SQLSelect, [id], (err, result) => {
             if (err) {
-                return res.render("tela_error");
-               
-                console.log(err);
+                console.error('Erro ao executar a consulta:', err);
+                return res.render("tela_error", { errorText: 'Erro ao executar a consulta.' });
             }
 
-            if (result.lenght === 0) {
-                return res.render("tela_error");
-                return console.log(result, 'result');
+            if (result.length === 0) {  // Verifica se o resultado está vazio
+                console.log('Nenhum resultado encontrado para o ID:', id);
+                return res.render("tela_error", { errorText: 'Cadrastro inválido' });
             }
 
-
+            return res.render('tela_vereador', { codeVoto: id, municipio });
         });
 
-        res.render('tela_vereador', { codeVoto: id, municipio });
-
     } catch (error) {
-        console.log(error);
+        console.error('Erro ao processar a requisição:', error);
+        return res.render("tela_error", { errorText: 'Erro ao processar a requisição.' });
     }
-
 });
 
 router.post('/prefeito', async (req, res) => {

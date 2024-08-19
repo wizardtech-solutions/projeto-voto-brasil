@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     inputs.forEach((input, index) => {
       setTimeout(() => {
         input.style.color = '#333333'; // Torna o texto visível
-      }, index * 350); // Ajusta o atraso para cada texto
+      }, index * 250); // Ajusta o atraso para cada texto
     });
     
 });

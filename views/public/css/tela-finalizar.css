@@ -20,21 +20,14 @@
 
 @keyframes finalizar {
     50% {
-        width: 20%;
-        height: 20%;
-        border-radius: 50%;
+
+        background-color: #ffffff;
+
     }
-    85%{
-        width: 130%;
-        height: 100%;
-        position: absolute;
-        border-radius: 25%;
-    }
+
     100% {
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        border-radius: 0;
+
+        background-color: #28a745;
     }
 }
 
@@ -56,7 +49,6 @@
     justify-content: center;
     flex-direction: column;
     position: relative;
-    background-color: #28a745;
     animation: finalizar 3s ease-out forwards;
     /* Animação de 0 a 100% em 5 segundos */
 
@@ -64,10 +56,12 @@
         font-size: 60px;
         color: #FFF;
     }
-    p{
+
+    p {
         font-size: 20px;
         color: #fff;
     }
+
     .button-finalizar {
         width: 90%;
         height: 50px;
@@ -84,19 +78,7 @@
 
 
 }
-@media (width>700px) {
-    .section_finalizar{
-        height: 100vh;
-        width: 350px;
-    }
-    .content_finalizar {
-        height: 100vh;
-        width: 350px;
-    }
-    .button-finalizar {
-        width: 300px;
-    }
-}
+
 
 .content_load {
     position: absolute;
@@ -111,12 +93,13 @@
     align-items: center;
     background-color: #f3f3f3;
     /* Cor de fundo da barra */
-    animation: disapper 1.5s  forwards;
+    animation: disapper 1.5s forwards;
 
 
-    p{
+    p {
         font: normal bolder 2rem 'Times New Roman', Times, serif;
     }
+
     /* Animação de 0 a 100% em 5 segundos */
     .barra-load {
         border: 3px solid #ccc;
@@ -134,5 +117,20 @@
         /* Começa com a largura 0 */
         animation: carregamento 1.5s ease-out forwards;
         /* Animação de 0 a 100% em 5 segundos */
+    }
+}
+
+@media (width>700px) {
+    .section_finalizar, .content_load , .content_finalizar{
+        height: 100vh;
+        width: 350px;
+    }
+    .content_load{
+        top: 0;
+        left: 50%;
+        transform: translate(-50%);        
+     }
+    .button-finalizar {
+        width: 300px;
     }
 }

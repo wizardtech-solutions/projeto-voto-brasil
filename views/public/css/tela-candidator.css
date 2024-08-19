@@ -106,8 +106,7 @@
 } 
 
 .content_teclas{
-    margin-top: 20px;
-    padding: 0 25px;
+    margin: 10px 0;
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -142,4 +141,5 @@
         background-color: #0faa5c;
         color: #ffffff;
     }
+    
 }

@@ -4,8 +4,10 @@
 
     <div class="content_link">
         {{!-- <a onclick="copyLink()">Copiar Link</a> --}}
-        <a href="{{urlRedirect}}" id="qr-link" class="button-cad">Iniciar votação</a>
-        <a class="img-whatsaap" href="https://wa.me/?text=Confira%20o%20link%20para%20iniciar%20a%20votação:%20{{urlRedirect}}" target="_blank" class="whatsapp-button">
+        {{!-- <a href="{{urlRedirect}}" id="qr-link" class="button-cad">Iniciar votação</a> --}}
+        <a class="img-whatsaap"
+            href="https://wa.me/?text=Confira%20o%20link%20para%20iniciar%20a%20votação:%20{{urlRedirect}}"
+            target="_blank" class="whatsapp-button">
             <img src="/img/logo-whatsapp.png" alt="WhatsApp">
         </a>
         <p>Compartilhe via Whatsapp</p>
@@ -13,6 +15,8 @@
 
     <h2 class="codigo_verificao">{{idInsert}}</h2>
     <h1>Cadastro realizado</h1>
+    <a href="{{urlRedirect}}" id="qr-link" class="button-cad">Iniciar votação</a>
+
     {{!-- <div class="button"><a href="/">Inicio</a></div> --}}
 
 </section>

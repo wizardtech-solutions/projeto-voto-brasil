@@ -14,6 +14,13 @@ body {
     width: 100%;
     height: 100vh;
 }
+/* Para Chrome, Safari, Edge e Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 
 a {
     text-decoration: none;
@@ -22,11 +29,10 @@ a {
 
 @media (width>700px) {
     body {
-        height: 100vh;
+        height: min-content;
         width: 350px;
         margin: auto;
         border: 1px solid #ddd;
-        /* padding: 0 20px; */
     }
 }
 
@@ -36,33 +42,38 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
-    /* background-color: #D7F9F8; */
-    background: radial-gradient(circle, #007bff, #01e6ff);
-    /* padding-left: 20px; */
+    justify-content: space-between;
+    background: radial-gradient(circle, #01e6ff, #007bff);
 
     .content_title {
         width: 90%;
-
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 70px;
         h2 {
-            font-size: 4rem;
+            font-size: 3rem;
             color: #ffffff;
+            text-align: center;
         }
 
-        h1 {
-            color: #2d578f;
+        h3 {
+            font-size: 2.5rem;
+            color: #ffffff;
             font-weight: bolder;
-            margin-top: 15px;
+            text-align: center;
 
         }
 
         p {
             margin-top: 10px;
             width: 70%;
-            font-size: 18px;
-            color: #2d578f;
+            color: wheat;
+            text-align: center;
         }
+    }
+    .msg_text{
+        margin: 0;
     }
 
     .content_img {
@@ -73,31 +84,26 @@ a {
         img {
             width: 70%;
             margin: auto;
-            /* height: 100%; */
-            /* filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(848%) hue-rotate(322deg) brightness(111%) contrast(111%); */
         }
-
 
     }
 
-
-
 }
 
-
 .content_btn {
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
-    gap: 15px;
+    justify-content: center;
     width: 90%;
-    
+    padding-bottom: 30px;
+
     .btn_inicar {
         height: 50px;
         border-radius: 10px;
-        background-color: #1369b0;
-        box-shadow: 1px 1px 3px rgb(152, 152, 152);
+        background-color: #8EE26B;
+        box-shadow: 1px 1px 2px rgb(0,0,0,.4);
         width: 100%;
         color: #ffffff;
         text-align: center;
@@ -107,4 +113,5 @@ a {
         justify-content: center;
         align-items: center;
     }
+
 }

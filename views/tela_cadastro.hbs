@@ -27,12 +27,13 @@
         </div>
         <div class="box_item">
             <label for="number_telefone">Número Telefone</label>
-            <input type="tel" id="number_telefone" name="number_telefone" maxlength="15" placeholder="Número do telefone">
+            <input type="tel" id="number_telefone" name="number_telefone" maxlength="15"
+                placeholder="Número do telefone">
         </div>
 
         <div class="box_item">
-            <label for="cep">Cep</label>
-            <input type="number" id="cep" name="cep" placeholder="Insira seu o cep">
+            <label for="cep">CEP</label>
+            <input type="text" id="cep" name="cep" maxlength="10" placeholder="00.000-000">
         </div>
 
         <div class="box_item">
@@ -42,8 +43,8 @@
                 <option value={{municipio}}>{{municipio}}</option>
             </select>
         </div>
-
         <div class="content_btn-form">
+            <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
             <button id="btn-submit-cadastro" type="submit">Cadastrar</button>
             <p class="loading-cad" id="loading-cad">
                 <img class="img-load" src="/img/loading.svg" alt="" srcset="">
