@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get('/cadastro-titulo', (req, res) => {
   const municipio = process.env.MUNICIPIO
-  return res.render('tela_cadastro', { municipio});
+  return res.render('tela_cadastro', { municipio });
 });
 
 router.get('/confirm-cadastro', (req, res) => {
@@ -25,45 +25,59 @@ router.post('/cadastro_titulo', async (req, res) => {
   const url = process.env.URL_REDIRECT;
 
   try {
+    // Extraia os valores do corpo da requisição
     const { nome, number_telefone, cep, cidade } = req.body;
 
-    const SQLInsert = `
-      INSERT INTO tb_cad_title (
-        nome,
-        number_telefone,
-        cep,
-        cidade
-      ) VALUES (?, ?, ?, ?)`;
+    // Remova caracteres especiais do número de telefone
+    const cleanedTelefone = number_telefone.replace(/\D/g, ''); // Remove todos os caracteres que não sejam números
 
-    const values = [nome, number_telefone, cep, cidade];
-
-    pool.query(SQLInsert, values, async (err, result) => {
+    // Verifique se o telefone já está cadastrado
+    const SQLCheck = `SELECT * FROM tb_cad_title WHERE number_telefone = ?`;
+    pool.query(SQLCheck, [cleanedTelefone], (err, results) => {
       if (err) {
-        console.log(err);
-        return res.render("tela_error", {errorText: 'Erro ao inserir dados no banco de dados.'});
-        return res.status(500).send({ message: 'Erro ao inserir dados no banco de dados.' });
+        console.error('Erro ao verificar o telefone no banco de dados:', err);
+        return res.render("tela_error", { errorText: 'Erro ao verificar o telefone no banco de dados.' });
       }
+      // NÃO APAGAR SERVER PARA EVITAR USAR O MESMO NUMERO DE TELEFONE 
+      // if (results.length > 0) {
+      //   console.log('O número de telefone já está cadastrado:', cleanedTelefone);
+      //   return res.render("tela_error", {errorText: 'O número de telefone já está cadastrado.'});
+      // }
 
-      try {
-        const idInsert = String(result.insertId);
-        const urlRedirect = `${url}${idInsert}`;
-        const qrCodeSrc = await QRCode.toDataURL(urlRedirect);
+      // Se o telefone não estiver cadastrado, prossiga com a inserção
+      const SQLInsert = `
+        INSERT INTO tb_cad_title (
+          nome,
+          number_telefone,
+          cep,
+          cidade
+        ) VALUES (?, ?, ?, ?)`;
 
-        // Redireciona com query parameters
-        res.redirect(`/cadastro/confirm-cadastro?qrCodeSrc=${encodeURIComponent(qrCodeSrc)}&urlRedirect=${encodeURIComponent(urlRedirect)}&idInsert=${encodeURIComponent(idInsert)}`);
-      } catch (err) {
-        console.error(err);
-        return res.render("tela_error", {errorText:'Erro ao gerar o QR code!'});
-       
-        res.status(500).send('Erro ao gerar o QR code');
-      }
+      const values = [nome, cleanedTelefone, cep, cidade];
+
+      pool.query(SQLInsert, values, async (err, result) => {
+        if (err) {
+          console.log(err);
+          return res.render("tela_error", { errorText: 'Erro ao inserir dados no banco de dados.' });
+        }
+
+        try {
+          const idInsert = String(result.insertId);
+          const urlRedirect = `${url}${idInsert}`;
+          const qrCodeSrc = await QRCode.toDataURL(urlRedirect);
+
+          // Redireciona com query parameters
+          res.redirect(`/cadastro/confirm-cadastro?qrCodeSrc=${encodeURIComponent(qrCodeSrc)}&urlRedirect=${encodeURIComponent(urlRedirect)}&idInsert=${encodeURIComponent(idInsert)}`);
+        } catch (err) {
+          console.error(err);
+          return res.render("tela_error", { errorText: 'Erro ao gerar o QR code!' });
+        }
+      });
     });
 
   } catch (err) {
     console.error(err);
-    return res.render("tela_error", {errorText: 'Erro ao processar a requisição'});
-
-    res.status(500).send('Erro ao processar a requisição');
+    return res.render("tela_error", { errorText: 'Erro ao processar a requisição' });
   }
 });
 

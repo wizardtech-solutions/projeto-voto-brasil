@@ -1,5 +1,6 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     const municipio = document.querySelector('#municipio'); 
+    const loading = document.querySelector('#loading'); // Seleciona o áudio
     
     const codeVoto = document.getElementById('codeVoto'); 
     const votoVereador = document.getElementById('votoVereador'); 
@@ -62,15 +63,16 @@ document.addEventListener('DOMContentLoaded', () => {
     //     DS_OCUPACAO: "ADVOGADO"
     // }]
     let dataCand = [];
-    fetch('/data/', {
+    await fetch('/data/', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
     })
     .then(response => response.json())
-    .then(data => { 
-        dataCand= data.filter(candidate => candidate.NM_UE == municipio.value && candidate.DS_CARGO == "VEREADOR")
+    .then(async data => { 
+        dataCand= await data.filter(candidate => candidate.NM_UE == municipio.value && candidate.DS_CARGO == "VEREADOR")
+        loading.style.display = "none";
     })
     // Função para preencher todos os inputs com zeros
     function preencherBranco() {
@@ -115,9 +117,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('cargo-cidade').textContent = "";
         document.getElementById('partido-sigla').textContent = "";
       
-        const todosPreenchidos = await Array.from(inputs).every(input => input.value !== '');
+        const todosPreenchidos = Array.from(inputs).every(input => input.value !== '');
         if (todosPreenchidos) {
-            let votos = await Array.from(inputs).map(input => input.value).join('');
+            let votos = Array.from(inputs).map(input => input.value).join('');
 
             // Filtrar apenas os candidatos que são vereadores
             const candidato = await dataCand.find(cand => cand.DS_CARGO == "VEREADOR" && cand.NR_CANDIDATO == votos);

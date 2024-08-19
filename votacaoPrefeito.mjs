@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', async() => {
     const municipio = document.querySelector('#municipio'); 
+    const loadingPrefeito = document.querySelector('#loadingPrefeito'); // Seleciona o áudio
     
     const codeVoto = document.getElementById('codeVoto'); // Seleciona o áudio
     const votoVereador = document.getElementById('votoVereador'); // Seleciona o áudio
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', async() => {
     .then(response => response.json())
     .then(async (data) => { 
         dataCandPrefeito= await data.filter(candidate => candidate.NM_UE == municipio.value && candidate.DS_CARGO == "PREFEITO" )
+        loadingPrefeito.style.display = "none";
     })
     // Função para preencher todos os inputsPrefeito com zeros
     function preencherBranco() {
