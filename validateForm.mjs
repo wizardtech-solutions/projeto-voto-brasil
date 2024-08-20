@@ -82,17 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     alert('Você deve selecionar a cidade.');
                     return; // Saia da função após exibir o erro
                 }
-                const recaptchaResponse = grecaptcha.getResponse();
-                if (!recaptchaResponse) {
-                    alert('Por favor, complete o reCAPTCHA.');
-                    event.preventDefault(); // Impede o envio do formulário
-                    return; // Saia da função após exibir o erro
-                }
-
-                // grecaptcha.enterprise.ready(async () => {
-                //     const token = await grecaptcha.enterprise.execute('6LfzRSoqAAAAANAM0hthh9gEY398Y3C3i2ov72cr', {action: 'LOGIN'});
-                // });
-
+                
             } catch (error) {
                 alert('Algo aconteceu, recarregue a pagina e tente novamente')
             } finally {
