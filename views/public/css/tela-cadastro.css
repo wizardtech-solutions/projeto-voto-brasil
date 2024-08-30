@@ -127,6 +127,3 @@ button {
     transition: background-color 0.3s ease; /* Transição suave na cor de fundo */
 }
 
-button:hover {
-    background-color: #1a7bbf; /* Cor mais escura ao passar o mouse */
-}
