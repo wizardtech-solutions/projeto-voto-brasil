@@ -14,7 +14,6 @@ router.get('/inicio-votacao/:id?', (req, res) => {
     // Renderiza a página com base na validade do ID
     try {
         
-        
         res.render('tela_inicio_voto', { idInsert: isValidId ? idInsert : null, digitsArray });
     } catch (error) {
         console.log(error)
