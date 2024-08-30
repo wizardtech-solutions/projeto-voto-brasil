@@ -107,6 +107,7 @@ select {
         height: 20px;
         align-items: center;
         justify-content: center;
+        user-select: none;
         img{
             font-size: 20px;
             width: 20px;

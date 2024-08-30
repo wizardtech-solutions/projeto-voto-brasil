@@ -61,7 +61,8 @@
         outline: none;
         color: white;
         border-radius: 5px;
-        background-color: #359cfc;
+        background-color: #8EE26B;
+        font-size: 25px;
     }
     
     @media (width>700px) {

@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const buttonCad = document.querySelector('#btn-submit-cadastro');
     const loadingCad = document.querySelector('.loading-cad');
     const telefoneInput = document.getElementById('number_telefone');
-    const cepInput = document.getElementById('cep');
+    // const cepInput = document.getElementById('cep');
 
     telefoneInput.addEventListener('input', function (event) {
         let value = event.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
@@ -24,20 +24,20 @@ document.addEventListener('DOMContentLoaded', function () {
         event.target.value = value;
     });
 
-    // Máscara para o input de CEP
-    cepInput.addEventListener('input', function (event) {
-        let value = event.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+    // // Máscara para o input de CEP
+    // cepInput.addEventListener('input', function (event) {
+    //     let value = event.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
 
-        if (value.length > 2) {
-            value = value.slice(0, 2) + '.' + value.slice(2);
-        }
-        if (value.length > 6) {
-            value = value.slice(0, 6) + '-' + value.slice(6, 9);
-        }
+    //     if (value.length > 2) {
+    //         value = value.slice(0, 2) + '.' + value.slice(2);
+    //     }
+    //     if (value.length > 6) {
+    //         value = value.slice(0, 6) + '-' + value.slice(6, 9);
+    //     }
 
-        // Define o valor formatado de volta no input
-        event.target.value = value;
-    });
+    //     // Define o valor formatado de volta no input
+    //     event.target.value = value;
+    // });
     if (form) {
         form.addEventListener('submit', function (event) {
             loadingCad.style.display = 'flex';
@@ -47,8 +47,8 @@ document.addEventListener('DOMContentLoaded', function () {
             try {
                 const nome = document.getElementById('nome').value.trim();
                 const numberTelefone = document.getElementById('number_telefone').value.replace(/\D/g, '');
-                const cep = document.getElementById('cep').value.trim();
-                const cidade = document.getElementById('cidade').value;
+                // const cep = document.getElementById('cep').value.trim();
+                // const cidade = document.getElementById('cidade').value;
 
                 // Valide o nome
                 if (nome === '') {
@@ -67,21 +67,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 // Valide o CEP (deve ter exatamente 8 dígitos)
-                const cleanedCep = cep.replace(/\D/g, ''); // Remove todos os caracteres que não sejam números
+                // const cleanedCep = cep.replace(/\D/g, ''); // Remove todos os caracteres que não sejam números
 
-                const cepRegex = /^\d{8}$/;
-                if (!cepRegex.test(cleanedCep)) {
-                    alert('O CEP deve ter exatamente 8 dígitos.');
-                    event.preventDefault(); // Impede o envio do formulário
-                    return; // Saia da função após exibir o erro
-                }
+                // const cepRegex = /^\d{8}$/;
+                // if (!cepRegex.test(cleanedCep)) {
+                //     alert('O CEP deve ter exatamente 8 dígitos.');
+                //     event.preventDefault(); // Impede o envio do formulário
+                //     return; // Saia da função após exibir o erro
+                // }
 
-                // Valide a seção
-                if (cidade === '') {
-                    event.preventDefault(); // Impede o envio do formulário
-                    alert('Você deve selecionar a cidade.');
-                    return; // Saia da função após exibir o erro
-                }
+                // // Valide a seção
+                // if (cidade === '') {
+                //     event.preventDefault(); // Impede o envio do formulário
+                //     alert('Você deve selecionar a cidade.');
+                //     return; // Saia da função após exibir o erro
+                // }
                 
             } catch (error) {
                 alert('Algo aconteceu, recarregue a pagina e tente novamente')

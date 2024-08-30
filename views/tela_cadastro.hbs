@@ -31,18 +31,20 @@
                 placeholder="Número do telefone">
         </div>
 
-        <div class="box_item">
+        {{!-- <div class="box_item">
             <label for="cep">CEP</label>
             <input type="text" id="cep" name="cep" maxlength="10" placeholder="00.000-000">
-        </div>
+        </div> --}}
+        <input type="hidden"  name="cidade" id="cidade" value={{municipio}}>
 
-        <div class="box_item">
+        {{!-- <div class="box_item">
             <label for="cidade">Municipio que voto:</label>
-            <select name="cidade" id="cidade">
+            <select name="cidade" id="cidade" >
                 <option value="">Selecione o Municipio</option>
-                <option value={{municipio}}>{{municipio}}</option>
+                <option >{{municipio}}</option>
             </select>
-        </div>
+        </div> --}}
+
         <div class="content_btn-form">
             <button id="btn-submit-cadastro" type="submit">Cadastrar</button>
             <p class="loading-cad" id="loading-cad">
