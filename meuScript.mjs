@@ -1,5 +1,5 @@
-// document.addEventListener('DOMContentLoaded', () => {
-    const btnSubmit = document.querySelector("#btn-submit-cadastro")
+document.addEventListener('DOMContentLoaded', () => {
+    
     function copyLink() {
         const qrLinkElement = document.getElementById('qr-link');
         if (qrLinkElement) {
@@ -13,11 +13,7 @@
             console.log('Continue...');
         }
     }
-    btnSubmit.addEventListener('click', () => {
-        copyLink();
-    });
-   
-    
-// });
+       
+});
 
   

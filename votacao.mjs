@@ -15,53 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const numbers = document.querySelectorAll('#content_number_vereador .box_number');
 
     let currentInputIndex = 0; // Índice do input atual
-    // const dataCand1 = [{
-    //     SG_UF: "PI",
-    //     SG_UE: "12190",
-    //     NM_UE: "TERESINA",
-    //     CD_CARGO: "11",
-    //     DS_CARGO: "PREFEITO",
-    //     NR_CANDIDATO: "13",
-    //     NM_CANDIDATO: "FABIO NUNEZ NOVO",
-    //     NM_URNA_CANDIDATO: "FABIO NOVO",
-    //     TP_AGREMIACAO: "COLIGAÇÃO",
-    //     NR_PARTIDO: "13",
-    //     SG_PARTIDO: "PT",
-    //     NM_PARTIDO: "PARTIDO DOS TRABALHADORES",
-    //     NM_COLIGACAO: "Juntos por Teresina",
-    //     DS_COMPOSICAO_COLIGACAO: "Juntos por Teresina [AGIR - AGIR, Democracia Cristã - DC, Federação BRASIL DA ESPERANÇA - FE BRASIL (PT/PC do B/PV), Federação PSDB CIDADANIA (PSDB/CIDADANIA), Movimento Democrático Brasileiro - MDB, Partido Democrático Trabalhista - PDT, Partido Social Democrático - PSD, Partido Socialista Brasileiro - PSB, Podemos - PODE, Solidariedade - SOLIDARIEDADE] - TERESINA - PI",
-    //     SG_UF_NASCIMENTO: "PI",
-    //     DT_NASCIMENTO: "20/07/1974",
-    //     NR_TITULO_ELEITORAL_CANDIDATO: "019604241562",
-    //     DS_GENERO: "MASCULINO",
-    //     DS_GRAU_INSTRUCAO: "SUPERIOR COMPLETO",
-    //     DS_ESTADO_CIVIL: "SOLTEIRO(A)",
-    //     DS_COR_RACA: "BRANCA",
-    //     DS_OCUPACAO: "DEPUTADO"
-    // }, {
-    //     SG_UF: "PI",
-    //     SG_UE: "12190",
-    //     NM_UE: "TERESINA",
-    //     CD_CARGO: "13",
-    //     DS_CARGO: "VEREADOR",
-    //     NR_CANDIDATO: "15456",
-    //     NM_CANDIDATO: "LUCY DE FARIAS CARVALHO SOARES",
-    //     NM_URNA_CANDIDATO: "LUCY SOARES",
-    //     TP_AGREMIACAO: "PARTIDO ISOLADO",
-    //     NR_PARTIDO: "15",
-    //     SG_PARTIDO: "MDB",
-    //     NM_PARTIDO: "MOVIMENTO DEMOCRÁTICO BRASILEIRO",
-    //     NM_COLIGACAO: "PARTIDO ISOLADO",
-    //     DS_COMPOSICAO_COLIGACAO: "Movimento Democrático Brasileiro - MDB - TERESINA - PI",
-    //     SG_UF_NASCIMENTO: "PE",
-    //     DT_NASCIMENTO: "11/06/1967",
-    //     NR_TITULO_ELEITORAL_CANDIDATO: "020408421503",
-    //     DS_GENERO: "FEMININO",
-    //     DS_GRAU_INSTRUCAO: "SUPERIOR COMPLETO",
-    //     DS_ESTADO_CIVIL: "VIÚVO(A)",
-    //     DS_COR_RACA: "PARDA",
-    //     DS_OCUPACAO: "ADVOGADO"
-    // }]
+    
     let dataCand = [];
     await fetch('/data/', {
         method: 'GET',
@@ -131,7 +85,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 // Atualiza o caminho da imagem (certifique-se que o caminho esteja correto)
                 // document.getElementById('img-cand').src = `/img/${candidato.NM_URNA_CANDIDATO.toLowerCase().replace(/ /g, '-')}.jpg`;
-                console.log("candidato.SQ_CANTIDATO",candidato.SQ_CANDIDATO)
                 document.getElementById('img-cand').src = `/img/FPI${candidato.SQ_CANDIDATO}_div.jpeg`;
 
                 // document.getElementById('img-cand').src = `/img/${candidato.NM_URNA_CANDIDATO}.jpg`;

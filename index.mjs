@@ -37,6 +37,7 @@ app.use('/cadastro',historicoRouter);
 app.use('/libera',votacaoLiberadaRouter);
 
 app.get('/',(req,res)=>{
+    
     res.render('tela_inicial');
     
 })
