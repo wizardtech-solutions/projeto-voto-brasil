@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 // Atualiza o caminho da imagem (certifique-se que o caminho esteja correto)
                 // document.getElementById('img-cand').src = `/img/${candidato.NM_URNA_CANDIDATO.toLowerCase().replace(/ /g, '-')}.jpg`;
-                document.getElementById('img-cand').src = `/img/FPI${candidato.SQ_CANDIDATO}_div.jpeg`;
+                document.getElementById('img-cand').src = `/img/imgCand/FPI${candidato.SQ_CANDIDATO}_div.jpeg`;
 
                 // document.getElementById('img-cand').src = `/img/${candidato.NM_URNA_CANDIDATO}.jpg`;
             } else {

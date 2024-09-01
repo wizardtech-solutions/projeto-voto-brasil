@@ -25,6 +25,7 @@ app.use(bodyParser.json());
 // Configurando o diretório raiz para arquivos estáticos
 app.use(express.static(path.join(__dirname, 'views/public')));
 app.use(express.static(path.join(__dirname, 'views/public/img')));
+// app.use(express.static(path.join(__dirname, 'views/public/img/imgCand')));
 app.use(express.static(path.join(__dirname, 'views/public/audio')));
 
 // Roteamento para as rotas de atendimento
