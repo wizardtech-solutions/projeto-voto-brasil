@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', async () => {
-    const municipio = document.querySelector('#municipio'); 
+    const municipio = document.querySelector('#municipio');
     const loading = document.querySelector('#loading'); // Seleciona o áudio
-    
-    const codeVoto = document.getElementById('codeVoto'); 
-    const votoVereador = document.getElementById('votoVereador'); 
+
+    const codeVoto = document.getElementById('codeVoto');
+    const votoVereador = document.getElementById('votoVereador');
 
     const btnBranco = document.querySelector('#tecla_branca_vereador')
     const btnLaranja = document.querySelector('#tecla_laranja_vereador')
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const numbers = document.querySelectorAll('#content_number_vereador .box_number');
 
     let currentInputIndex = 0; // Índice do input atual
-    
+
     let dataCand = [];
     await fetch('/data/', {
         method: 'GET',
@@ -23,11 +23,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             'Content-Type': 'application/json',
         },
     })
-    .then(response => response.json())
-    .then(async data => { 
-        dataCand= await data.filter(candidate => candidate.NM_UE == municipio.value && candidate.DS_CARGO == "VEREADOR")
-        loading.style.display = "none";
-    })
+        .then(response => response.json())
+        .then(async data => {
+            dataCand = await data.filter(candidate => candidate.NM_UE == municipio.value && candidate.DS_CARGO == "VEREADOR")
+            loading.style.display = "none";
+        })
     // Função para preencher todos os inputs com zeros
     function preencherBranco() {
         inputs.forEach(input => input.value = '0');
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             return
         }
     }
-    formVereador.addEventListener("submit",(event)=>{
+    formVereador.addEventListener("submit", (event) => {
         event.preventDefault();
         confirmar();
     });
@@ -70,11 +70,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('nome-cand').textContent = "";
         document.getElementById('cargo-cidade').textContent = "";
         document.getElementById('partido-sigla').textContent = "";
-      
+
         const todosPreenchidos = Array.from(inputs).every(input => input.value !== '');
         if (todosPreenchidos) {
             let votos = Array.from(inputs).map(input => input.value).join('');
 
+
+            function imageExists(url, callback) {
+                var img = new Image();
+                img.onload = function () { callback(true); };
+                img.onerror = function () { callback(false); };
+                img.src = url;
+            }
             // Filtrar apenas os candidatos que são vereadores
             const candidato = await dataCand.find(cand => cand.DS_CARGO == "VEREADOR" && cand.NR_CANDIDATO == votos);
             if (candidato) {
@@ -83,11 +90,24 @@ document.addEventListener('DOMContentLoaded', async () => {
                 document.getElementById('cargo-cidade').textContent = `${candidato.DS_CARGO} - ${candidato.NM_UE}/${candidato.SG_UF}`;
                 document.getElementById('partido-sigla').textContent = `${candidato.NM_PARTIDO} - ${candidato.SG_PARTIDO}`;
 
-                // Atualiza o caminho da imagem (certifique-se que o caminho esteja correto)
-                // document.getElementById('img-cand').src = `/img/${candidato.NM_URNA_CANDIDATO.toLowerCase().replace(/ /g, '-')}.jpg`;
-                document.getElementById('img-cand').src = `/img/imgCand/FPI${candidato.SQ_CANDIDATO}_div.jpeg`;
+                // Tenta carregar a imagem com diferentes extensões
+                const basePath = `/img/imgCand/FPI${candidato.SQ_CANDIDATO}_div`;
+                const formats = ['.jpg', '.jpeg'];
+                let imageLoaded = false;
 
-                // document.getElementById('img-cand').src = `/img/${candidato.NM_URNA_CANDIDATO}.jpg`;
+                formats.forEach((format, index) => {
+                    if (!imageLoaded) {
+                        const url = `${basePath}${format}`;
+                        imageExists(url, (exists) => {
+                            if (exists) {
+                                document.getElementById('img-cand').src = url;
+                                imageLoaded = true;
+                            } else if (index === formats.length - 1 && !imageLoaded) {
+                                document.getElementById('img-cand').src = ''; // Nenhuma imagem encontrada
+                            }
+                        });
+                    }
+                });
             } else {
                 // Preenche com "Voto Nulo" se não houver candidato correspondente
                 document.getElementById('voto-nulo').textContent = 'VOTO NULO';
@@ -99,6 +119,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 // alert('Voto nulo');
             }
+
         }
     }
 

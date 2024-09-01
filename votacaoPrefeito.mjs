@@ -78,6 +78,12 @@ document.addEventListener('DOMContentLoaded', async() => {
         if (todosPreenchidosPrefeito) {
             let votos = await Array.from(inputsPrefeito).map(input => input.value).join('');
 
+            function imageExistsPrefeito(url, callback) {
+                var img = new Image();
+                img.onload = function () { callback(true); };
+                img.onerror = function () { callback(false); };
+                img.src = url;
+            }
             // Filtrar apenas os candidatos que são vereadores
             const candidato = await dataCandPrefeito.find(cand => cand.DS_CARGO == "PREFEITO" && cand.NR_CANDIDATO == votos);
             if (candidato) {
@@ -86,10 +92,24 @@ document.addEventListener('DOMContentLoaded', async() => {
                 document.getElementById('cargo-cidade').textContent = `${candidato.DS_CARGO} - ${candidato.NM_UE}/${candidato.SG_UF}`;
                 document.getElementById('partido-sigla').textContent = `${candidato.NM_PARTIDO} - ${candidato.SG_PARTIDO}`;
 
-                // Atualiza o caminho da imagem (certifique-se que o caminho esteja correto)
-                document.getElementById('img-cand').src = `/img/imgCand/FPI${candidato.SQ_CANDIDATO}_div.jpeg`;
+                // Tenta carregar a imagem com diferentes extensões
+                const basePath = `/img/imgCand/FPI${candidato.SQ_CANDIDATO}_div`;
+                const formats = ['.jpg', '.jpeg'];
+                let imageLoaded = false;
 
-                // document.getElementById('img-cand').src = `/img/${candidato.NM_URNA_CANDIDATO}.jpg`;
+                formats.forEach((format, index) => {
+                    if (!imageLoaded) {
+                        const url = `${basePath}${format}`;
+                        imageExistsPrefeito(url, (exists) => {
+                            if (exists) {
+                                document.getElementById('img-cand').src = url;
+                                imageLoaded = true;
+                            } else if (index === formats.length - 1 && !imageLoaded) {
+                                document.getElementById('img-cand').src = ''; // Nenhuma imagem encontrada
+                            }
+                        });
+                    }
+                });
             } else {
                 // Preenche com "Voto Nulo" se não houver candidato correspondente
                 document.getElementById('voto-nulo').textContent = 'VOTO NULO';
