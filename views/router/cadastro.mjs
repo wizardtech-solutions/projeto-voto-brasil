@@ -26,14 +26,14 @@ router.get('/confirm-cadastro', (req, res) => {
 router.post('/cadastro_titulo', async (req, res) => {
 
   const url = process.env.URL_REDIRECT;
-
+  const municipio = process.env.MUNICIPIO;
   try {
     // Extraia os valores do corpo da requisição
     const { nome, number_telefone, cep, cidade } = req.body;
     // Remova caracteres especiais do número de telefone
     const cleanedTelefone = number_telefone.replace(/\D/g, ''); // Remove todos os caracteres que não sejam números
     const isAuth = await isAuthorizedUser(nome, cleanedTelefone);
-    
+
     // NÃO APAGAR SERVER PARA EVITAR USAR O MESMO NUMERO DE TELEFONE 
     // if (!isAuth) {
     //     console.log('O número de telefone já está cadastrado:', cleanedTelefone);
@@ -62,7 +62,7 @@ router.post('/cadastro_titulo', async (req, res) => {
           cidade
         ) VALUES (?, ?, ?, ?)`;
 
-      const values = [nome, cleanedTelefone, cep, cidade];
+      const values = [nome, cleanedTelefone, cep, municipio];
 
       pool.query(SQLInsert, values, async (err, result) => {
         if (err) {
