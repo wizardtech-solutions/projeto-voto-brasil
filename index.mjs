@@ -51,6 +51,9 @@ function serveJavaScriptFile(req, res, filePath) {
 app.get('/meuScript.mjs', (req, res) => {
     serveJavaScriptFile(req, res, 'meuScript.mjs');
 });
+// app.get('/utils.mjs', (req, res) => {
+//     serveJavaScriptFile(req, res, 'utils.mjs');
+// });
 
 app.get('/votacao.mjs', (req, res) => {
     serveJavaScriptFile(req, res, 'votacao.mjs');

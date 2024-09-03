@@ -42,6 +42,7 @@ router.post('/prefeito', async (req, res) => {
 });
 
 router.post('/finalizar', async (req, res) => {
+    const municipio = process.env.MUNICIPIO;
     const { codeVoto, votoVereador, votoPrefeito } = req.body;
 
     try {
@@ -68,7 +69,7 @@ router.post('/finalizar', async (req, res) => {
                       INSERT INTO tb_voto (code, voto_vereador, voto_prefeito,cidade)
                       VALUES (?, ?, ?, ?)
                     `;
-                const insertValues = [codeVoto, votoVereador, votoPrefeito, "teresina"];
+                const insertValues = [codeVoto, votoVereador, votoPrefeito,municipio];
 
                 pool.query(insertQuery, insertValues, (err, result) => {
                     if (err) {

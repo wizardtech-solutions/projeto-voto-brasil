@@ -2,6 +2,8 @@ import express from 'express';
 import QRCode from 'qrcode';
 import pool from '../db/db.mjs';
 import dotenv from 'dotenv'
+import { isAuthorizedUser } from '../scripts/utils.mjs'
+
 dotenv.config();
 
 const router = express.Router();
@@ -22,14 +24,21 @@ router.get('/confirm-cadastro', (req, res) => {
 });
 
 router.post('/cadastro_titulo', async (req, res) => {
+
   const url = process.env.URL_REDIRECT;
 
   try {
     // Extraia os valores do corpo da requisição
     const { nome, number_telefone, cep, cidade } = req.body;
-
     // Remova caracteres especiais do número de telefone
     const cleanedTelefone = number_telefone.replace(/\D/g, ''); // Remove todos os caracteres que não sejam números
+    const isAuth = await isAuthorizedUser(nome, cleanedTelefone);
+    
+    // NÃO APAGAR SERVER PARA EVITAR USAR O MESMO NUMERO DE TELEFONE 
+    // if (!isAuth) {
+    //     console.log('O número de telefone já está cadastrado:', cleanedTelefone);
+    //     return res.render("tela_error", {errorText: 'Usuário não autorizado, contate o suporte.'});
+    // }   
 
     // Verifique se o telefone já está cadastrado
     const SQLCheck = `SELECT * FROM tb_cad_title WHERE number_telefone = ?`;
