@@ -44,7 +44,7 @@ a {
         flex-direction: column;
         align-items: center;
         img {
-            width: 90%;
+            width: 70%;
             margin: auto;
         }
         h2 {
@@ -74,8 +74,11 @@ a {
     .content_img{
         width: 90%;
         position: relative;
-        display: flex;
-        justify-content: center;
+       
+        a{
+            display: flex;
+            justify-content: center;
+        }
         img {
             width: 40%;
             margin: auto;

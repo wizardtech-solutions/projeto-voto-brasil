@@ -34,11 +34,11 @@ router.post('/cadastro_titulo', async (req, res) => {
     const cleanedTelefone = number_telefone.replace(/\D/g, ''); // Remove todos os caracteres que não sejam números
     const isAuth = await isAuthorizedUser(nome, cleanedTelefone);
 
-    // NÃO APAGAR SERVER PARA EVITAR USAR O MESMO NUMERO DE TELEFONE 
-    // if (!isAuth) {
-    //     console.log('O número de telefone já está cadastrado:', cleanedTelefone);
-    //     return res.render("tela_error", {errorText: 'Usuário não autorizado, contate o suporte.'});
-    // }   
+    console.log(isAuth,'numberUserClear eros')
+    if (!isAuth) {
+        console.log('O número de telefone já está cadastrado:', cleanedTelefone);
+        return res.render("tela_error", {errorText: 'Usuário não autorizado, contate o suporte.'});
+    }   
 
     // Verifique se o telefone já está cadastrado
     const SQLCheck = `SELECT * FROM tb_cad_title WHERE number_telefone = ?`;

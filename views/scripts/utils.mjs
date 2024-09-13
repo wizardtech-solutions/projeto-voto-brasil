@@ -15,11 +15,15 @@ export async function isAuthorizedUser(nome, telephone) {
     const jsonData = readFileSync(filePath, 'utf8');
     const authorizedUsers = JSON.parse(jsonData);
 
-
     // Verificar se o nome e o número correspondem a um usuário autorizado
-    return authorizedUsers.some(user =>
-      user.numberCell == telephone
-    );
+    const isAuthorized = authorizedUsers.some(user => {
+      const userNumberCleaned = user.numberCell.replace(/\D/g, '');
+      const result = userNumberCleaned === telephone;
+      console.log(result, telephone, 'utils.mjs.isAuthorizedUser');
+      return result;
+    });
+
+    return isAuthorized; // Retornar se o usuário é autorizado ou não
   } catch (err) {
     console.error('Erro ao ler o arquivo JSON:', err);
     return false;
