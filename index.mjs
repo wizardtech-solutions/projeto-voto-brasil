@@ -71,6 +71,6 @@ app.get('/telaInicioVoto.mjs', (req, res) => {
 });
 
 app.listen(4000,()=>{
-    console.log('servidor rodando');
+    console.log('Server listening on port 4000');
 })
 

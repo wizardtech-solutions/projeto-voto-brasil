@@ -27,6 +27,7 @@ router.post('/cadastro_titulo', async (req, res) => {
 
   const url = process.env.URL_REDIRECT;
   const municipio = process.env.MUNICIPIO;
+  const authForNumber = process.env.AUTH_FOR_NUMBER;
   try {
     // Extraia os valores do corpo da requisição
     const { nome, number_telefone, cep, cidade } = req.body;
@@ -34,9 +35,9 @@ router.post('/cadastro_titulo', async (req, res) => {
     const cleanedTelefone = number_telefone.replace(/\D/g, ''); // Remove todos os caracteres que não sejam números
     const isAuth = await isAuthorizedUser(nome, cleanedTelefone);
 
-    console.log(isAuth,'numberUserClear eros')
-    if (!isAuth) {
-        console.log('O número de telefone já está cadastrado:', cleanedTelefone);
+    console.log(isAuth, authForNumber,'numberUserClear eros')
+    if (!isAuth && authForNumber=='true') {
+        console.log('O número de telefone não está na base:', cleanedTelefone);
         return res.render("tela_error", {errorText: 'Usuário não autorizado, contate o suporte.'});
     }   
 

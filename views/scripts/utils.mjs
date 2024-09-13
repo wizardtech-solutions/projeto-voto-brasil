@@ -19,7 +19,7 @@ export async function isAuthorizedUser(nome, telephone) {
     const isAuthorized = authorizedUsers.some(user => {
       const userNumberCleaned = user.numberCell.replace(/\D/g, '');
       const result = userNumberCleaned === telephone;
-      console.log(result, telephone, 'utils.mjs.isAuthorizedUser');
+      // console.log(result, telephone, 'utils.mjs.isAuthorizedUser');
       return result;
     });
 
